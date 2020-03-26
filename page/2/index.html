@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_2.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon%20(1).ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="cg&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="cg&#39;s Blog">
+<meta property="og:description" content="Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="cgcs">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="next">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Blog">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>cg's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="cg's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">cg's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">cgcsblog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/26/Python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cgcs">
+      <meta itemprop="description" content="Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cg's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/26/Python/" class="post-title-link" itemprop="url">Python</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-26 19:27:32" itemprop="dateCreated datePublished" datetime="2020-03-26T19:27:32+08:00">2020-03-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 18:18:42" itemprop="dateModified" datetime="2020-03-04T18:18:42+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/26/MySQL%E5%AD%A6%E4%B9%A0--%E8%AF%BB%20MySQL%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%E7%AC%94%E8%AE%B0%E4%B8%8E%E6%BA%90%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cgcs">
+      <meta itemprop="description" content="Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cg's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/26/MySQL%E5%AD%A6%E4%B9%A0--%E8%AF%BB%20MySQL%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%E7%AC%94%E8%AE%B0%E4%B8%8E%E6%BA%90%E7%A0%81/" class="post-title-link" itemprop="url">MySQL学习--读 MySQL必知必会笔记与源码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-26 19:27:32" itemprop="dateCreated datePublished" datetime="2020-03-26T19:27:32+08:00">2020-03-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-07 19:06:16" itemprop="dateModified" datetime="2020-03-07T19:06:16+08:00">2020-03-07</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="了解SQL"><a href="#了解SQL" class="headerlink" title="了解SQL"></a>了解SQL</h1><hr>
+<ul>
+<li><p>1.数据库是指保存有组织的数据的容器；</p>
+</li>
+<li><p>2.人们不直接访问数据库，而是通过数据库管理系统(DBMS)对数据库进行管理；</p>
+</li>
+<li><p>3.表是一种存储具有某种特定类型的数据的结构化文件，统一数据库中，表名必唯一，用来标识各表；</p>
+</li>
+<li><p>4.模式约等于数据库，是关于数据库和表的布局及特性的信息；</p>
+</li>
+<li><p>5.列是表中的一个字段，数据库中每个列都必须有相应的数据类型，数据类型限制每个列可存储的数据种类；行(row)是表中的一个记录(record);</p>
+</li>
+<li><p>6.主键：一列或者一组列，其值能够唯一区分表中各行；以主键的值来表示表中一个特定的行；表中的任何列都可做为主键，只要其满足以下条件：</p>
+<ul>
+<li><p>任意两行都不能有相同的主键值；</p>
+</li>
+<li><p>每个行都必须有一个主键值(主键列不允许NULL值)</p>
+<h1 id="MySQL简介"><a href="#MySQL简介" class="headerlink" title="MySQL简介"></a>MySQL简介</h1></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>  1.基于客户机-服务器的数据库：MySQL，Oracle，SQL Server；  </p>
+<p>  2.MySQL命令行实用程序注意事项：<br>     (1)命令输入在mysql&gt;之后；<br>    （2）命令以;或者\g结束 ；<br>    （3）输入help或\h获得帮助，也可以输入更多内容获得特定命令的帮助，如：help select；<br>    （4）输入quit或exit退出命令行实用程序；</p>
+<h1 id="使用MySQL"><a href="#使用MySQL" class="headerlink" title="使用MySQL"></a>使用MySQL</h1><hr>
+<h2 id="SQL语句书写规范："><a href="#SQL语句书写规范：" class="headerlink" title="SQL语句书写规范："></a>SQL语句书写规范：</h2><ul>
+<li><p>1.使用mysql命令行，必须用分号结束SQL语句；</p>
+</li>
+<li><p>2.==对所有SQL关键字使用大写，对所有列和表名使用小写，将SQL语句分成多行，标准和统一化，这样利于以后的阅读和调试==；</p>
+<p>SHOW DATABASES;返回可用数据库的一个列表；</p>
+</li>
+</ul>
+<p>SHOW TABLES; 返回当前选择的数据库内可用的表的列表；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW COLUMNS FROM customers；</span><br></pre></td></tr></table></figure>
+<p>SHOWCOLUMNS要求给出表名，对每个字段返回一行，行中包含字段名、数据类型、是否允许NULL、键信息、默认值以及其他信息；</p>
+<pre><code>DESCRIBE customers;等于 SHOW COLUMNS FROM customers;</code></pre><p>其他的SHOW语句：</p>
+<p>SHOW STATUS; 显示服务器状态信息；</p>
+<p>SHOW CREATE DATABASE;和 SHOW CREATE TABLE;显示创建特定的数据库和表<br>；<br>SHOW GRANTS;显示授予用户的安全权限；</p>
+<p>SHOW ERRORS;和SHOW WARNINGS;显示服务器错误或警告信息；</p>
+<p> HELP SHOW;调出的SHOW 语句：（留作以后注释 ）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">SHOW &#123;BINARY | MASTER&#125; LOGS</span><br><span class="line"></span><br><span class="line">SHOW BINLOG EVENTS [IN &#39;log_name&#39;] [FROM pos] [LIMIT [offset,] row_count]</span><br><span class="line"></span><br><span class="line">SHOW CHARACTER SET [like_or_where]</span><br><span class="line"></span><br><span class="line">SHOW COLLATION [like_or_where]</span><br><span class="line"></span><br><span class="line">SHOW [FULL] COLUMNS FROM tbl_name [FROM db_name] [like_or_where]</span><br><span class="line"></span><br><span class="line">SHOW CREATE DATABASE db_name</span><br><span class="line"></span><br><span class="line">SHOW CREATE EVENT event_name</span><br><span class="line"></span><br><span class="line">SHOW CREATE FUNCTION func_name</span><br><span class="line"></span><br><span class="line">SHOW CREATE PROCEDURE proc_name</span><br><span class="line"></span><br><span class="line">SHOW CREATE TABLE tbl_name</span><br><span class="line"></span><br><span class="line">SHOW CREATE TRIGGER trigger_name</span><br><span class="line"></span><br><span class="line">SHOW CREATE VIEW view_name</span><br><span class="line"></span><br><span class="line">SHOW DATABASES [like_or_where]</span><br><span class="line"></span><br><span class="line">SHOW ENGINE engine_name &#123;STATUS | MUTEX&#125;</span><br><span class="line"></span><br><span class="line">SHOW [STORAGE] ENGINES</span><br><span class="line"></span><br><span class="line">SHOW ERRORS [LIMIT [offset,] row_count]</span><br><span class="line"></span><br><span class="line">SHOW EVENTS</span><br><span class="line"></span><br><span class="line">SHOW FUNCTION CODE func_name</span><br><span class="line"></span><br><span class="line">SHOW FUNCTION STATUS [like_or_where]</span><br><span class="line"></span><br><span class="line">SHOW GRANTS FOR user</span><br><span class="line"></span><br><span class="line">SHOW INDEX FROM tbl_name [FROM db_name]</span><br><span class="line"></span><br><span class="line">SHOW MASTER STATUS</span><br><span class="line"></span><br><span class="line">SHOW OPEN TABLES [FROM db_name] [like_or_where]</span><br><span class="line"></span><br><span class="line">SHOW PLUGINS</span><br><span class="line"></span><br><span class="line">SHOW PROCEDURE CODE proc_name</span><br><span class="line"></span><br><span class="line">SHOW PROCEDURE STATUS [like_or_where]</span><br><span class="line"></span><br><span class="line">SHOW PRIVILEGES</span><br><span class="line"></span><br><span class="line">SHOW [FULL] PROCESSLIST</span><br><span class="line"></span><br><span class="line">SHOW PROFILE [types] [FOR QUERY n] [OFFSET n] [LIMIT n]</span><br><span class="line"></span><br><span class="line">SHOW PROFILES</span><br><span class="line"></span><br><span class="line">SHOW RELAYLOG EVENTS [IN &#39;log_name&#39;] [FROM pos] [LIMIT [offset,] row_count]</span><br><span class="line"></span><br><span class="line">SHOW SLAVE HOSTS</span><br><span class="line"></span><br><span class="line">SHOW SLAVE STATUS [FOR CHANNEL channel]</span><br><span class="line"></span><br><span class="line">SHOW [GLOBAL | SESSION] STATUS [like_or_where]</span><br><span class="line"></span><br><span class="line">SHOW TABLE STATUS [FROM db_name] [like_or_where]</span><br><span class="line"></span><br><span class="line">SHOW [FULL] TABLES [FROM db_name] [like_or_where]</span><br><span class="line"></span><br><span class="line">SHOW TRIGGERS [FROM db_name] [like_or_where]</span><br><span class="line"></span><br><span class="line">SHOW [GLOBAL | SESSION] VARIABLES [like_or_where]</span><br><span class="line"></span><br><span class="line">SHOW WARNINGS [LIMIT [offset,] row_count]</span><br><span class="line"></span><br><span class="line">like_or_where:</span><br><span class="line"></span><br><span class="line"> LIKE &#39;pattern&#39;</span><br><span class="line"> </span><br><span class="line">  | WHERE expr</span><br></pre></td></tr></table></figure>
+<h1 id="检索数据"><a href="#检索数据" class="headerlink" title="检索数据"></a>检索数据</h1><hr>
+<h2 id="SELECT语句"><a href="#SELECT语句" class="headerlink" title="SELECT语句"></a>SELECT语句</h2><h3 id="检索一个列"><a href="#检索一个列" class="headerlink" title="检索一个列"></a>检索一个列</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name &#x2F;&#x2F;SELECT后给出列名</span><br><span class="line">FROM products;&#x2F;&#x2F;FROM 后给出表名</span><br><span class="line">&#x2F;&#x2F;这里数据未经过过滤 过滤后的数据将得出结果的一个子集；</span><br></pre></td></tr></table></figure>
+<h3 id="检索多个列"><a href="#检索多个列" class="headerlink" title="检索多个列"></a>检索多个列</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT	prod_id,	prod_name,	prod_price &#x2F;&#x2F;不同的列之间以,分隔，最后一个列名后不加；</span><br><span class="line">FROM	products;</span><br></pre></td></tr></table></figure>
+<h3 id="检索所有列"><a href="#检索所有列" class="headerlink" title="检索所有列"></a>检索所有列</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * &#x2F;&#x2F;给定通配符(*)，则返回表中的所有列；</span><br><span class="line">FROM    products;</span><br></pre></td></tr></table></figure>
+<h3 id="检索不同的行"><a href="#检索不同的行" class="headerlink" title="检索不同的行"></a>检索不同的行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT   vend_id</span><br><span class="line"> FROM     products;</span><br></pre></td></tr></table></figure>
+<h3 id="只返回不同的关键字值"><a href="#只返回不同的关键字值" class="headerlink" title="只返回不同的关键字值"></a>只返回不同的关键字值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT  DISTINCT   vend_id</span><br><span class="line"> FROM     products;</span><br></pre></td></tr></table></figure>
+<h3 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h3><p>1.使用DISTINCT关键字时，==它必须放在所在列名的前面==；</p>
+<p>2.==不可部分使用DISTINCT==，DISTINCT关键字应用于所有的列而不是前置它的列；</p>
+<h2 id="限制结果"><a href="#限制结果" class="headerlink" title="限制结果"></a>限制结果</h2><h3 id="LIMIT子句"><a href="#LIMIT子句" class="headerlink" title="LIMIT子句"></a>LIMIT子句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name</span><br><span class="line">FROM products</span><br><span class="line">LIMIT 5; &#x2F;&#x2F;指示返回的行数不多于5行</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name</span><br><span class="line">FROM products</span><br><span class="line">LIMIT 5,5;&#x2F;&#x2F;由第五行开始 返回的行数不多于5行</span><br></pre></td></tr></table></figure>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>1.LIMIT 0 检索出第一行 以此类推</p>
+<p>2.当给的行数不够时 MySQL只返回他能返回的那么多行</p>
+<p>3.MySQL支持</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIMIT 4 OFFSET 3 ;&#x3D;&#x3D;&#x3D;   LIMIT 3 ,4 ;</span><br></pre></td></tr></table></figure>
+<h2 id="使用完全限定的表名"><a href="#使用完全限定的表名" class="headerlink" title="使用完全限定的表名"></a>使用完全限定的表名</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT products.prod_name</span><br><span class="line">FROM demo.products;</span><br></pre></td></tr></table></figure>
+<h2 id="使用完全限定列名"><a href="#使用完全限定列名" class="headerlink" title="使用完全限定列名"></a>使用完全限定列名</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT products.prod_name&#x2F;&#x2F;完全限定是指在想要检索的名称前加上他上一级的名称，中间用.号分割</span><br><span class="line">FROM products;</span><br></pre></td></tr></table></figure>
+<h3 id="注意事项：-1"><a href="#注意事项：-1" class="headerlink" title="注意事项："></a>注意事项：</h3><p>在具有多个数据库/多个表，且不同数据库的表之间存在相同的名称的行名或者列名时，使用完全限定名。</p>
+<h1 id="排序检索数据"><a href="#排序检索数据" class="headerlink" title="排序检索数据"></a>排序检索数据</h1><hr>
+<h2 id="排序数据"><a href="#排序数据" class="headerlink" title="排序数据"></a>排序数据</h2><p>ORDER BY子句默认由小到大（或以字母 或以数字 或以其它可排序条件）对结果进行排序</p>
+<p>ORDER BY子句后面跟着的列名或者行名是为排序的依据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name</span><br><span class="line">FROM products</span><br><span class="line">ORDER BY prod_name;</span><br></pre></td></tr></table></figure>
+<p>通常情况下，ORDER BY 后面的列或者行是为显示所选择的列和行，但实际上并不一定要这样做；用非检索的列排序数据完全合法。</p>
+<h2 id="按多个列排序"><a href="#按多个列排序" class="headerlink" title="按多个列排序"></a>按多个列排序</h2><p>指定列名，列名之间用逗号分隔开</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_id,prod_price,prod_name</span><br><span class="line">FROM products</span><br><span class="line">ORDER BY prod_price,prod_name;</span><br></pre></td></tr></table></figure>
+<p>==按多个列排序时，排序完全按所规定的列的顺序进行==</p>
+<p>也即</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_id,prod_price,prod_name</span><br><span class="line">FROM products</span><br><span class="line">ORDER BY prod_name,prod_price;</span><br></pre></td></tr></table></figure>
+<p>的运行结果与上述SQL运行结果完全不同；</p>
+<h2 id="指定排序的方向"><a href="#指定排序的方向" class="headerlink" title="指定排序的方向"></a>指定排序的方向</h2><p>数据排序不限于升序排序，这是默认的排序顺序，还可以使用 ORDER BY 子句实现降序排序。为了实现降序排序，需要用到 DESC 关键字</p>
+<h3 id="单列排序"><a href="#单列排序" class="headerlink" title="单列排序"></a>单列排序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_id, prod_price, prod_name</span><br><span class="line">FROM  products</span><br><span class="line">ORDER BY prod_price DESC;</span><br></pre></td></tr></table></figure>
+<p>==DESC 放在需逆序排序的条件数据之后==</p>
+<h3 id="多列排序"><a href="#多列排序" class="headerlink" title="多列排序"></a>多列排序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_id, prod_price, prod_name</span><br><span class="line">FROM  products</span><br><span class="line">ORDER BY prod_price DESC,prod_name;</span><br></pre></td></tr></table></figure>
+<p>==DESC 放在需逆序排序的条件数据之后==不同的条件用,分割</p>
+<p>==DESC关键字之应用于直接位于其前面的内容==在多个列上进行降序排列，需要对每个列指定DESC关键字</p>
+<p>与DESC相反的关键字是ACE 由于默认的排序顺序是升序排序，故ACE关键字并不常用</p>
+<h2 id="到目前为止学过的子句的顺序"><a href="#到目前为止学过的子句的顺序" class="headerlink" title="到目前为止学过的子句的顺序"></a>到目前为止学过的子句的顺序</h2><p> 再给出ORDER BY 子句时，应保证其在FROM子句之后；如果使用LIMIT，其必须在ORDER BY 子句之后</p>
+<p> ==FROM -&gt; ORDER BY -&gt; LIMIT==</p>
+<h1 id="过滤数据（WHERE子句）"><a href="#过滤数据（WHERE子句）" class="headerlink" title="过滤数据（WHERE子句）"></a>过滤数据（WHERE子句）</h1><hr>
+<p>在 SELECT 语句中，数据根据WHERE子句中指定的检索条件给出满足条件的全部数据的子集，WHERE子句在FROM子句之后给出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name,prod_price</span><br><span class="line">FROM products</span><br><span class="line">WHERE prod_price &#x3D; 2.50;</span><br></pre></td></tr></table></figure>
+<h2 id="多个子句的位置："><a href="#多个子句的位置：" class="headerlink" title="多个子句的位置："></a>多个子句的位置：</h2><p>FROM -&gt; WHERE -&gt; ORDER BY -&gt;LIMIT</p>
+<h3 id="检查单个值"><a href="#检查单个值" class="headerlink" title="检查单个值"></a>检查单个值</h3><h4 id="等值查询"><a href="#等值查询" class="headerlink" title="等值查询"></a>等值查询</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name,prod_price</span><br><span class="line">FROM products</span><br><span class="line">WHERE prod_name &#x3D; &#39;fuses&#39;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 检索价格小于10美元的全部产品</span><br><span class="line">SELECT  prod_name,prod_price</span><br><span class="line">FROM products</span><br><span class="line">WHERE prod_price&lt;10;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 检索价格小于等于10美元的全部产品</span><br><span class="line">SELECT  prod_name,prod_price</span><br><span class="line">FROM products</span><br><span class="line">WHERE prod_price&lt;&#x3D;10;</span><br></pre></td></tr></table></figure>
+<h4 id="不匹配检查"><a href="#不匹配检查" class="headerlink" title="不匹配检查"></a>不匹配检查</h4><p>单括号用来限定字符串，如果将值与串类型的列进行比较，需要限定引号，用来与数值列进行比较的列不用引号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;列出不是由供应商1003制造的所有产品</span><br><span class="line">SELECT</span><br><span class="line">	vend_id,</span><br><span class="line">	prod_name</span><br><span class="line">FROM</span><br><span class="line">	products</span><br><span class="line">WHERE</span><br><span class="line">	vend_id &lt;&gt; 1003;</span><br><span class="line">	&#x2F;&#x2F;或者</span><br><span class="line">SELECT</span><br><span class="line">	vend_id,</span><br><span class="line">	prod_name</span><br><span class="line">FROM</span><br><span class="line">	products</span><br><span class="line">WHERE</span><br><span class="line">	vend_id !&#x3D; 1003;</span><br></pre></td></tr></table></figure>
+<h4 id="范围值检查-BETWEEN"><a href="#范围值检查-BETWEEN" class="headerlink" title="范围值检查(BETWEEN)"></a>范围值检查(BETWEEN)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;检索价格在5到10美元之间的产品的名称和价格</span><br><span class="line">SELECT</span><br><span class="line">	prod_name,</span><br><span class="line">	prod_price</span><br><span class="line">FROM</span><br><span class="line">	products</span><br><span class="line">WHERE</span><br><span class="line">	prod_price BETWEEN 5</span><br><span class="line">AND 10;</span><br></pre></td></tr></table></figure>
+<p>在使用BETWEEN时，必须指定两个值——所需检索范围的低端值与高端值，这两个值必须用 AND 关键字相连，BETWEEN关键字匹配范围中的所有的值，包括指定的开始值与结束值。</p>
+<h4 id="空值检查"><a href="#空值检查" class="headerlink" title="空值检查"></a>空值检查</h4><p>null与字段包含0、空字符串或仅仅包含空格不同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	prod_name</span><br><span class="line">FROM</span><br><span class="line">	products</span><br><span class="line">WHERE</span><br><span class="line">	prod_price IS NULL;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT cust_id</span><br><span class="line">FROM customers</span><br><span class="line">WHERE cust_email is NULL;</span><br></pre></td></tr></table></figure>
+<p>在通过过滤选择出不具有特定值的行时，不会返回null值的行，==未知具有特殊的含义==，数据库无法分辨它们是否匹配。因此，在过滤数据时，一定要验证返回数据中确实给出了被过滤列具有NULL值的行。</p>
+<h1 id="数据过滤-操作符"><a href="#数据过滤-操作符" class="headerlink" title="数据过滤(操作符)"></a>数据过滤(操作符)</h1><hr>
+<h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符:"></a>操作符:</h2><p>逻辑操作符<br>用来联结或改变WHERE子句中的子句的关键字。</p>
+<h3 id="AND操作符"><a href="#AND操作符" class="headerlink" title="AND操作符"></a>AND操作符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;AND</span><br><span class="line">SELECT prod_id,prod_name,prod_price</span><br><span class="line">FROM products</span><br><span class="line">WHERE vend_id &#x3D; 1003 AND prod_price &lt;&#x3D;30;</span><br></pre></td></tr></table></figure>
+<p>AND： 用在WHERE字句中的关键字，用来指示DBMS只返回满足特定条件的行。<br>还可以多加入几个条件，每个条件之间用AND连接</p>
+<h3 id="OR操作符"><a href="#OR操作符" class="headerlink" title="OR操作符"></a>OR操作符</h3><p>OR： 用在WHERE字句中的关键字，用来指示MySQL检索匹配任一条件的行(任一匹配即可返回相应行值)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name,prod_price</span><br><span class="line">FROM products</span><br><span class="line">WHERE vend_id &#x3D; 1002 OR vend_id &#x3D; 1003;</span><br></pre></td></tr></table></figure>
+<h2 id="计算次序"><a href="#计算次序" class="headerlink" title="计算次序"></a>计算次序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name,prod_price</span><br><span class="line">FROM products</span><br><span class="line">WHERE vend_id &#x3D; 1002 OR vend_id &#x3D; 1003 AND prod_price &gt;&#x3D; 10;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name,prod_price</span><br><span class="line">FROM products</span><br><span class="line">WHERE (vend_id &#x3D; 1002 OR vend_id &#x3D; 1003) AND prod_price&gt;&#x3D; 10;</span><br></pre></td></tr></table></figure>
+<p>由此可见：<br>SQL语言在处理OR操作符之前，优先处理AND操作符 == AND在计算次序中优先级更高</p>
+<p>==任何时候使用具有AND 和OR操作符的WHERE 子句，都应该使用圆括号来明确地分组操作符==</p>
+<h3 id="IN操作符"><a href="#IN操作符" class="headerlink" title="IN操作符"></a>IN操作符</h3><p>用来限定条件范围，范围中的每个条件都可以进行匹配。IN</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name,prod_price</span><br><span class="line">FROM products</span><br><span class="line">WHERE vend_id IN (1002,1003)</span><br><span class="line">ORDER BY prod_name;</span><br></pre></td></tr></table></figure>
+
+<h3 id="NOT操作符"><a href="#NOT操作符" class="headerlink" title="NOT操作符"></a>NOT操作符</h3><p>WHERE 子句当中的NOT 操作符只有一个功能：否定它之后所跟的任何条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name , prod_price</span><br><span class="line">FROM products</span><br><span class="line">WHERE vend_id NOT IN (1002,1003)</span><br><span class="line">ORDER BY prod_name;</span><br></pre></td></tr></table></figure>
+<p>在与IN操作符联合使用时，NOT 使找出与条件列表不匹配的行变得非常简单，MySQL支持使用NOT 对IN、BETWEEN和EXISTS子句取反，这与多数其他DBMS允许使用NOT对各种条件取反有很大的差别。</p>
+<h1 id="用通配符进行过滤"><a href="#用通配符进行过滤" class="headerlink" title="用通配符进行过滤"></a>用通配符进行过滤</h1><hr>
+<h2 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h2><hr>
+<p>为在搜索语句中使用通配符，必须使用LIKE操作符.LIKE 指示MySQL后跟的搜索模式利用通配符匹配而不是直接相等匹配进行比较。<br>通配符可以在搜索模式中的任意位置使用，并且可以使用多个通配符。</p>
+<h2 id="百分号通配符"><a href="#百分号通配符" class="headerlink" title="百分号通配符(%)"></a>百分号通配符(%)</h2><p>在搜索串中，%表示任何字符出现任意的次数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_id,prod_name</span><br><span class="line">FROM products</span><br><span class="line">WHERE prod_name LIKE &#39;jet%&#39;;</span><br></pre></td></tr></table></figure>
+<p>%告诉Mysql接受jet之后的任意字符，不管他有多少字符</p>
+<p>搜索模式中出现对个通配符:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_id,prod_name</span><br><span class="line">FROM products</span><br><span class="line">WHERE prod_name LIKE &#39;%anvil%&#39;;</span><br></pre></td></tr></table></figure>
+<p>搜索模式中间出现通配符:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name</span><br><span class="line">FROM products</span><br><span class="line">WHERE prod_name LIKE &#39;s%e&#39;;</span><br></pre></td></tr></table></figure>
+<h2 id="下划线通配符"><a href="#下划线通配符" class="headerlink" title="下划线通配符(_)"></a>下划线通配符(_)</h2><p>下划线的用途和%一样，但下划线只匹配单个字符而不是多个字符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_id ,prod_name</span><br><span class="line">FROM products</span><br><span class="line">WHERE prod_name LIKE &#39;_ ton anvil&#39;;</span><br></pre></td></tr></table></figure>
+<p>对比</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_id ,prod_name</span><br><span class="line">FROM products</span><br><span class="line">WHERE prod_name LIKE &#39;%ton anvil&#39;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用通配符的技巧："><a href="#使用通配符的技巧：" class="headerlink" title="使用通配符的技巧："></a>使用通配符的技巧：</h2><p>通配符搜索的处理一般要比前面的其他搜索花的时间更长。</p>
+<ul>
+<li>不要过度使用通配符。如果其他操作符能达到相同的目的的，优先使用其他操作符；</li>
+<li>如确实需要使用通配符，除非绝对有必要，否则不要讲它们用在搜索模式开始处；</li>
+<li>仔细注意通配符的位置。<h1 id="用正则表达式进行搜索"><a href="#用正则表达式进行搜索" class="headerlink" title="用正则表达式进行搜索"></a>用正则表达式进行搜索</h1></li>
+</ul>
+<hr>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>正则表达式是用来匹配文本的特殊的串</p>
+<h2 id="MySQL-与正则表达式"><a href="#MySQL-与正则表达式" class="headerlink" title="MySQL 与正则表达式"></a>MySQL 与正则表达式</h2><p>正则表达式的作用是匹配文本，将一个模式(正则表达式)与一个文本串进行比较。MySQL用WHERE子句对正则表达式提供了初步的支持，允许指定正则表达式，过滤SELECT检索出的数据。</p>
+<h2 id="基本字符匹配"><a href="#基本字符匹配" class="headerlink" title="基本字符匹配"></a>基本字符匹配</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name</span><br><span class="line">FROM products</span><br><span class="line">WHERE prod_name REGEXP &#39;1000&#39;</span><br><span class="line">ORDER BY prod_name;</span><br></pre></td></tr></table></figure>
+<p>REGEXP：<br>告诉MySQL REGEXP 后面所跟的东西作为正则表达式（与文字正文1000匹配的正则表达式）处理。</p>
+<p><strong>使用正则表达式的优点：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name</span><br><span class="line">FROM products</span><br><span class="line">WHERE prod_name REGEXP &#39;.000&#39;</span><br><span class="line">ORDER BY prod_name;</span><br></pre></td></tr></table></figure>
+<p>正则表达式’.000’，这里的.是正则表达式语言中一个特殊符号，他表示匹配任意一个字符，因此1000/2000都匹配</p>
+<h2 id="LIKE-amp-amp-REGEXP"><a href="#LIKE-amp-amp-REGEXP" class="headerlink" title="LIKE&amp;&amp;REGEXP"></a>LIKE&amp;&amp;REGEXP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name</span><br><span class="line">FROM products</span><br><span class="line">WHERE prod_name LIKE &#39;1000&#39;</span><br><span class="line">ORDER BY prod_name;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT prod_name</span><br><span class="line">FROM products</span><br><span class="line">WHERE prod_name REGEXP &#39;1000&#39;</span><br><span class="line">ORDER BY prod_name;</span><br></pre></td></tr></table></figure>
+<p>由此可见LIKE 与 REGEXP 的区别体现在：</p>
+<ul>
+<li>LIKE匹配整个列，如果被匹配的文本在列值中出现，LIKE 将不会找到它，相应的行也不会返回；</li>
+<li>REGEXP 在列值内进行匹配，如果被匹配的文本在列值中出现，REGEXP将会找到它，相应的行将被返回。</li>
+</ul>
+<p>在匹配中若要区分大小写，可使用BINARY关键字，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WHERE prod_name BINARY REGEXP &#39;JetPACK</span><br><span class="line">.000&#39;</span><br></pre></td></tr></table></figure>
+<h4 id="进行OR匹配"><a href="#进行OR匹配" class="headerlink" title="进行OR匹配"></a>进行OR匹配</h4><h4 id="匹配几个字符之一"><a href="#匹配几个字符之一" class="headerlink" title="匹配几个字符之一"></a>匹配几个字符之一</h4><h4 id="匹配范围"><a href="#匹配范围" class="headerlink" title="匹配范围"></a>匹配范围</h4><h4 id="匹配特殊字符"><a href="#匹配特殊字符" class="headerlink" title="匹配特殊字符"></a>匹配特殊字符</h4><h4 id="匹配字符类"><a href="#匹配字符类" class="headerlink" title="匹配字符类"></a>匹配字符类</h4><h4 id="匹配多个实例"><a href="#匹配多个实例" class="headerlink" title="匹配多个实例"></a>匹配多个实例</h4><h4 id="定位符"><a href="#定位符" class="headerlink" title="定位符"></a>定位符</h4><h3 id="MySQL-正则表达式小结"><a href="#MySQL-正则表达式小结" class="headerlink" title="MySQL 正则表达式小结"></a>MySQL 正则表达式小结</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/26/Linux%E5%AD%A6%E4%B9%A0--%E8%AF%BB%20Linux%E7%A7%81%E6%88%BF%E8%8F%9C%E7%9A%84%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cgcs">
+      <meta itemprop="description" content="Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cg's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/26/Linux%E5%AD%A6%E4%B9%A0--%E8%AF%BB%20Linux%E7%A7%81%E6%88%BF%E8%8F%9C%E7%9A%84%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Linux学习--读 Linux私房菜的笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-26 19:27:32" itemprop="dateCreated datePublished" datetime="2020-03-26T19:27:32+08:00">2020-03-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-04 18:06:02" itemprop="dateModified" datetime="2020-03-04T18:06:02+08:00">2020-03-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/21/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cgcs">
+      <meta itemprop="description" content="Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cg's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/21/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-21 15:41:43" itemprop="dateCreated datePublished" datetime="2020-03-21T15:41:43+08:00">2020-03-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">cgcs</p>
+  <div class="site-description" itemprop="description">Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cgcs</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
