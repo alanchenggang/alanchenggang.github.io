@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="方法入门方法定义定义一个方法的格式： 123public static void 方法名称()&amp;#123;    方法体&amp;#125; 方法名称的命名规则和变量一样使用小驼峰式 方法体： 也就是大括号当中可以包含的任意条语句； 注意事项： 方法定义的先后顺序无所谓； 方法的定义不能产生嵌套包含关系； 方法定义好之后不会执行，如果要执行则需调用方法  方法调用格式： 方法名称(); 12345">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础--方法">
+<meta property="og:url" content="http://yoursite.com/2020/04/04/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80--%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="cg&#39;s Blog">
+<meta property="og:description" content="方法入门方法定义定义一个方法的格式： 123public static void 方法名称()&amp;#123;    方法体&amp;#125; 方法名称的命名规则和变量一样使用小驼峰式 方法体： 也就是大括号当中可以包含的任意条语句； 注意事项： 方法定义的先后顺序无所谓； 方法的定义不能产生嵌套包含关系； 方法定义好之后不会执行，如果要执行则需调用方法  方法调用格式： 方法名称(); 12345">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322170900641.png">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322170953830.png">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322183555758.png">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322183642253.png">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322183727952.png">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322183759957.png">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322183849844.png">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322183939637.png">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322184012089.png">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322184153923.png">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322184226905.png">
+<meta property="article:published_time" content="2020-04-04T10:55:27.064Z">
+<meta property="article:modified_time" content="2020-04-04T11:47:27.338Z">
+<meta property="article:author" content="cgcs">
+<meta property="article:tag" content="Java基础入门">
+<meta property="article:tag" content="Java语法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322170900641.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/04/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80--%E6%96%B9%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java基础--方法 | cg's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://github.com/alanchenggang" target="_blank" rel="noopener"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">cg's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">cgcsblog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80--%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cgcs">
+      <meta itemprop="description" content="Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cg's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java基础--方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-04 18:55:27 / 修改时间：19:47:27" itemprop="dateCreated datePublished" datetime="2020-04-04T18:55:27+08:00">2020-04-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <a id="more"></a>
+
+
+
+<h1 id="方法入门"><a href="#方法入门" class="headerlink" title="方法入门"></a>方法入门</h1><h2 id="方法定义"><a href="#方法定义" class="headerlink" title="方法定义"></a>方法定义</h2><p>定义一个方法的格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> 方法名称()&#123;</span><br><span class="line">    方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法名称的命名规则和变量一样使用小驼峰式</p>
+<p>方法体： 也就是大括号当中可以包含的任意条语句；</p>
+<h4 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h4><ol>
+<li>方法定义的先后顺序无所谓；</li>
+<li>方法的定义不能产生嵌套包含关系；</li>
+<li>方法定义好之后不会执行，如果要执行则需调用方法</li>
+</ol>
+<h2 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h2><p>格式：<br> 方法名称();</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        me();<span class="comment">//调用方法</span></span><br><span class="line">        System.out.println(<span class="string">"==========="</span>);</span><br><span class="line">        cook();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">farmer</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"播种"</span>);</span><br><span class="line">        System.out.println(<span class="string">"除虫"</span>);</span><br><span class="line">        System.out.println(<span class="string">"收割"</span>);</span><br><span class="line">        System.out.println(<span class="string">"出售"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">seller</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"收购"</span>);</span><br><span class="line">        System.out.println(<span class="string">"运输"</span>);</span><br><span class="line">        System.out.println(<span class="string">"零售"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">cook</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"购买"</span>);</span><br><span class="line">        System.out.println(<span class="string">"洗菜"</span>);</span><br><span class="line">        System.out.println(<span class="string">"切菜"</span>);</span><br><span class="line">        System.out.println(<span class="string">"做菜"</span>);</span><br><span class="line">        System.out.println(<span class="string">"装菜"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">me</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"吃"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322170900641.png" alt="image-20200322170900641"></p>
+<h2 id="编译器的两点优化"><a href="#编译器的两点优化" class="headerlink" title="编译器的两点优化"></a>编译器的两点优化</h2><ol>
+<li>对于byte/short/char三种类型来说，如果右侧赋值的数值没有超过范围，那么javac编译器将会自动隐含地为我们不上一个(byte)(short)(char)<br>==直接写的数值，编译器默认为int类型==<br>如果右侧超过了左侧的范围，那么直接编译器报错；</li>
+<li>在给变量进行赋值时，如果右侧的表达式中全部是常量，没有任何变量，那么编译器javac将会直接将若干个常量表达式计算得到结果；        </li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">short</span> result = <span class="number">5</span> + <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
+
+<p>编译之后，得到的.class字节码文件当中相当于直接就是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">short</span> result = <span class="number">13</span>；</span><br></pre></td></tr></table></figure>
+
+<p>这称为==编译器的常量优化==，但是==一旦表达式中有变量==参与，那么就不能进行这种优化了。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">short</span> num1 = <span class="number">10</span>;<span class="comment">//正确写法</span></span><br><span class="line">        System.out.println(num1);</span><br><span class="line">        <span class="keyword">short</span> a = <span class="number">5</span>;</span><br><span class="line">        <span class="keyword">short</span> b = <span class="number">8</span>;</span><br><span class="line">        <span class="comment">//short result = a + b; Error:(9, 26) java: 不兼容的类型: 从int转换到short可能会有损失</span></span><br><span class="line">        <span class="comment">//右侧不用变量，而是用常量，而且仅有两个常量</span></span><br><span class="line">        <span class="keyword">short</span> result = <span class="number">5</span> + <span class="number">8</span>;</span><br><span class="line">        System.out.println(result);<span class="comment">//正确写法</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322170953830.png" alt="image-20200322170953830"></p>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>定义格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> 方法名称()&#123;</span><br><span class="line">    方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">方法名称();</span><br></pre></td></tr></table></figure>
+<p>简单编程练习：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        printMethod();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">20</span>; j++) &#123;</span><br><span class="line">                System.out.print(<span class="string">"*"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322183555758.png" alt="image-20200322183555758"></p>
+<h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><ol>
+<li>方法定义的先后顺序无所谓；</li>
+<li>方法定义必须是挨着的，不能嵌套；</li>
+<li>方法定义之后自己不会执行，若要执行，必须调用。</li>
+</ol>
+<h2 id="方法的完整定义格式"><a href="#方法的完整定义格式" class="headerlink" title="方法的完整定义格式"></a>方法的完整定义格式</h2><p>方法其实就是若干语句的功能集合。</p>
+<p>参数：进入方法的数据，相当于工厂中的原料；</p>
+<p>返回值：从方法中得出来的数据，相当于工厂中的成品。</p>
+<p>定义方法的完整格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">修饰符  返回值类型 方法名称(参数类型 参数名称 ，...)&#123;</span><br><span class="line">    方法体；</span><br><span class="line">    <span class="keyword">return</span> 返回值；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修饰符：现阶段的固定写法 public static</p>
+<p>返回值类型： 方法产生的返回值的数据类型</p>
+<p>方法名称: 方法的名称，规则和变量一样，小驼峰式</p>
+<p>参数类型：进入方法的数据是什么类型</p>
+<p>参数名称：进入方法的数据对应的变量名称</p>
+<p>PS：参数如果有多个使用逗号进行分隔</p>
+<p>方法体：方法需要实现的功能，若干行代码</p>
+<p>return：两个作用：1.停止当前方法  2.后面的结果数据返回值还给调用处</p>
+<p>返回值：方法执行后最终产生的数据结果</p>
+<p>注意：return后面的”返回值”必须和方法名称前面的”返回值类型”保持对应</p>
+<h2 id="方法的三种调用格式"><a href="#方法的三种调用格式" class="headerlink" title="方法的三种调用格式"></a>方法的三种调用格式</h2><ol>
+<li>单独调用：方法名称（参数）；</li>
+<li>打印调用：System.out.println(方法名称（参数）);</li>
+<li>赋值调用：数据类型 变量名称 = 方法名称（参数）；</li>
+</ol>
+<h5 id="注意事项：-1"><a href="#注意事项：-1" class="headerlink" title="注意事项："></a>注意事项：</h5><p>此前学习的方法，返回值类型固定写为void，这种方法只能够单独调用，不能进行打印调用或者赋值调用。</p>
+<h2 id="方法的定义与调用综合练习"><a href="#方法的定义与调用综合练习" class="headerlink" title="方法的定义与调用综合练习"></a>方法的定义与调用综合练习</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//单独调用</span></span><br><span class="line">        sum(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line">        System.out.println(<span class="string">"****************"</span>);</span><br><span class="line">        <span class="comment">//打印调用</span></span><br><span class="line">        System.out.println(sum(<span class="number">10</span>,<span class="number">20</span>));</span><br><span class="line">        System.out.println(<span class="string">"****************"</span>);</span><br><span class="line">        <span class="comment">//赋值调用</span></span><br><span class="line">        <span class="keyword">int</span> number = sum(<span class="number">15</span>,<span class="number">20</span>);</span><br><span class="line">        System.out.println(<span class="string">"变量的值："</span>+number);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"f方法执行啦"</span>);</span><br><span class="line">        <span class="keyword">int</span> result = a + b;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322183642253.png" alt="image-20200322183642253"></p>
+<h3 id="对比有参数无参数"><a href="#对比有参数无参数" class="headerlink" title="对比有参数无参数"></a>对比有参数无参数</h3><p>有参数：小括号当中有内容 //当一个方法需要一些数据条件，才能完成任务的时候，就是有参数；</p>
+<p>无参数：不需要数据条件即可完成任务<br>编程练习：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        method1(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line">        System.out.println(<span class="string">"****************"</span>);</span><br><span class="line">        method2();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//有参数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = a * b;</span><br><span class="line">        System.out.println(<span class="string">"结果是："</span> + result);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//无参数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"HELLO WORLD!"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322183727952.png" alt="image-20200322183727952"></p>
+<h3 id="对比有返回值无返回值"><a href="#对比有返回值无返回值" class="headerlink" title="对比有返回值无返回值"></a>对比有返回值无返回值</h3><p>简单编程练习：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 我是main 方法，负责调用你</span></span><br><span class="line">        <span class="comment">// 我调用你，你来帮我完成计算，算完之后吧结果告诉我的num变量</span></span><br><span class="line">        <span class="keyword">int</span> num = getSum(<span class="number">10</span>, <span class="number">20</span>);</span><br><span class="line">        System.out.println(<span class="string">"返回值是"</span> + num);</span><br><span class="line">        System.out.println(<span class="string">"**************"</span>);</span><br><span class="line">        <span class="comment">//你来计算并且你来输出结果，不用告诉我结果</span></span><br><span class="line">        printSum(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//有返回值</span></span><br><span class="line">    <span class="comment">//我是一个方法，负责完成两个数字相加</span></span><br><span class="line">    <span class="comment">//有返回值int，谁调用我。我就把计算结果告诉谁</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = a + b;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//无返回值</span></span><br><span class="line">    <span class="comment">//我是一个方法，负责完成两个数字相加</span></span><br><span class="line">    <span class="comment">//我没有返回值，不会把结果告诉任何人，而是自己进行打印输出</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = a + b;</span><br><span class="line">        System.out.println(<span class="string">"结果是："</span> + result);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322183759957.png" alt="image-20200322183759957"></p>
+<h5 id="注意事项：-2"><a href="#注意事项：-2" class="headerlink" title="注意事项："></a>注意事项：</h5><p>对于有返回值的方法，可以使用单独调用、打印调用或赋值调用；但是对于无返回值的方法，只能使用单独调用，不能使用打印调用或者赋值调用。</p>
+<h3 id="方法编程练习"><a href="#方法编程练习" class="headerlink" title="方法编程练习"></a>方法编程练习</h3><h5 id="比较两个数是否相同"><a href="#比较两个数是否相同" class="headerlink" title="比较两个数是否相同"></a>比较两个数是否相同</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*</span><br><span class="line">题目要求：</span><br><span class="line">定义一个方法，用来判断两个数字是否相同。</span><br><span class="line">思路：</span><br><span class="line">1.返回值类型：boolean类型</span><br><span class="line">2.方法名称：isSame</span><br><span class="line">3.参数列表： int a；int b</span><br><span class="line">*&#x2F;</span><br><span class="line"></span><br><span class="line">public class Mothod_01 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        System.out.println(isSame(10,50));</span><br><span class="line">        System.out.println(isSame(20,20));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static boolean isSame(int a, int b) &#123;</span><br><span class="line">&#x2F;*        if(a&#x3D;&#x3D;b)&#123;</span><br><span class="line">            same &#x3D;true;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            same &#x3D; false;</span><br><span class="line">        &#125;*&#x2F;</span><br><span class="line">        &#x2F;&#x2F;same &#x3D; a &#x3D;&#x3D; b ? true : false;</span><br><span class="line">        &#x2F;*boolean same &#x3D; a &#x3D;&#x3D; b;</span><br><span class="line">        return same;*&#x2F;</span><br><span class="line">        return a &#x3D;&#x3D; b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322183849844.png" alt="image-20200322183849844"></p>
+<h5 id="求出1-100之间的所有的和"><a href="#求出1-100之间的所有的和" class="headerlink" title="求出1-100之间的所有的和"></a>求出1-100之间的所有的和</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*</span><br><span class="line">题目要求：</span><br><span class="line">定义一个方法，求出1-100之间所有数字的和值</span><br><span class="line">三要素：</span><br><span class="line">返回值：有返回值，计算结果是一个int数字</span><br><span class="line">方法名称：getSum</span><br><span class="line">参数范围：数据范围已经确定，不需要条件 不需要参数</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class Mothod_02 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        System.out.println(&quot;结果是：&quot; + getSum());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static int getSum() &#123;</span><br><span class="line">        int sum &#x3D; 0;</span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; 100; i++) &#123;</span><br><span class="line">            sum +&#x3D; i;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322183939637.png" alt="image-20200322183939637"></p>
+<h5 id="打印指定次数"><a href="#打印指定次数" class="headerlink" title="打印指定次数"></a>打印指定次数</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">          printCount(<span class="number">5</span>);</span><br><span class="line">        System.out.println(<span class="string">"******"</span>);</span><br><span class="line">          printCount(<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printCount</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"HelloWorld"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322184012089.png" alt="image-20200322184012089"></p>
+<h4 id="方法总结"><a href="#方法总结" class="headerlink" title="方法总结"></a>方法总结</h4><ol>
+<li>方法应该定义在类当中，但是不能在方法当中再定义方法，不能嵌套；</li>
+<li>方法定义的前后顺序无所谓；</li>
+<li>方法定义之后不会执行，如果希望执行，一定要调用：单独调用、打印调用、赋值调用；</li>
+<li>==如果方法有返回值，那么必须写上“return 返回值；”，不能没有==；</li>
+<li>return 后面的返回值数据，必须和方法的返回值类型对应起来；</li>
+<li>对于一个void没有返回值的方法，不能写return后面的返回值，只有return自己；</li>
+<li>对于方法当中最后一行的return可省略不写；</li>
+<li>一个方法当中可以有多个return语句，但是必须保证同时只有一个能被执行到，两个return不能连写；</li>
+</ol>
+<h2 id="方法重载-OverLoad"><a href="#方法重载-OverLoad" class="headerlink" title="方法重载(OverLoad)"></a>方法重载(OverLoad)</h2><p>对于功能类似的方法来说，因为参数列表不一样，却需要记住太多不同的方法名称，为编程带来麻烦，故引入方法重载。</p>
+<p>方法的重载：==名称相同，参数列表不同==。</p>
+<p>好处：只需要记住一个方法名称，就可以实现类似的多个功能</p>
+<p><strong>方法重载与下面因素相关</strong></p>
+<ol>
+<li>参数的个数不同</li>
+<li>参数的类型不同</li>
+<li>参数的多类型顺序不同</li>
+</ol>
+<p><strong>方法重载与下面因素无关</strong></p>
+<ol>
+<li>与参数名称无关</li>
+<li>与方法的返回值类型无关//如果参数个数相同，则区分不出来到底调用哪种方法。</li>
+</ol>
+<p>编程练习：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo_01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//不用方法重载</span></span><br><span class="line"><span class="comment">/*        System.out.println(sumTwo(10,50));//60</span></span><br><span class="line"><span class="comment">        System.out.println(sumThree(10,10,10));//30</span></span><br><span class="line"><span class="comment">        System.out.println(sumFour(10,20,40,51));//121*/</span></span><br><span class="line">        <span class="comment">//使用方法重载</span></span><br><span class="line">        <span class="comment">//参数个数不同</span></span><br><span class="line">        System.out.println(sum(<span class="number">10</span>, <span class="number">20</span>));<span class="comment">//30 自动调用两个参数的方法</span></span><br><span class="line">        System.out.println(sum(<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>));<span class="comment">//60 自动调用三个参数的方法</span></span><br><span class="line">        System.out.println(sum(<span class="number">10</span>, <span class="number">20</span>, <span class="number">45</span>, <span class="number">654</span>));<span class="comment">//729 自动调用四个参数的方法</span></span><br><span class="line">        <span class="comment">// System.out.println(sum(10,20,52,88,875));  ERROR 定义的方法中并没有五个参数的方法，无法调用</span></span><br><span class="line">        <span class="comment">//参数类型不同</span></span><br><span class="line">        System.out.println(sum(<span class="number">11.2</span>, <span class="number">67.54</span>));<span class="comment">//78</span></span><br><span class="line">        <span class="comment">//参数的多类型顺序不同</span></span><br><span class="line">        System.out.println(<span class="string">"****************"</span>);</span><br><span class="line">        System.out.println(sum(<span class="number">11.8</span>, <span class="number">85</span>));<span class="comment">//96</span></span><br><span class="line">        System.out.println(sum(<span class="number">100</span>, <span class="number">0.001</span>));<span class="comment">//100</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*    ERROR</span></span><br><span class="line"><span class="comment">    错误写法，与参数名称无关</span></span><br><span class="line"><span class="comment">        public static int sum(int x, int y) &#123;</span></span><br><span class="line"><span class="comment">            return x + y;</span></span><br><span class="line"><span class="comment">        &#125;*/</span></span><br><span class="line">   <span class="comment">/*    ERROR</span></span><br><span class="line"><span class="comment">   错误写法：与方法的返回值类型无关</span></span><br><span class="line"><span class="comment">    public static double sum(int a, int b) &#123;</span></span><br><span class="line"><span class="comment">        return a + b + 0.0;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (a + b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">double</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (a + b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (a + b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b + c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c, <span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b + c + d;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="重载相关练习题："><a href="#重载相关练习题：" class="headerlink" title="重载相关练习题："></a>重载相关练习题：</h5><p><strong>1.判断值是否相等</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">题目要求：</span></span><br><span class="line"><span class="comment">比较两个数据是否相等，参数类型分别为两个byte类型，两个short类型，两个int类型，两个long类型</span></span><br><span class="line"><span class="comment">并在main方法中进行测试</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OverLoad_01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">byte</span> a =<span class="number">10</span>;</span><br><span class="line">        <span class="keyword">byte</span> b =<span class="number">20</span>;</span><br><span class="line">        System.out.println(isSame(a,b));</span><br><span class="line">        System.out.println(isSame((<span class="keyword">short</span>)<span class="number">10</span>,(<span class="keyword">short</span>)<span class="number">20</span>));</span><br><span class="line">        System.out.println(isSame(<span class="number">11</span>,<span class="number">15</span>));</span><br><span class="line">        System.out.println(isSame(<span class="number">10l</span>,<span class="number">10l</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isSame</span><span class="params">(<span class="keyword">byte</span> a, <span class="keyword">byte</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> same;</span><br><span class="line">        System.out.println(<span class="string">"byte"</span>);</span><br><span class="line">        <span class="keyword">if</span> (a == b) &#123;</span><br><span class="line">            same = <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            same = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> same;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isSame</span><span class="params">(<span class="keyword">short</span> a, <span class="keyword">short</span> b)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"short"</span>);</span><br><span class="line">        <span class="keyword">boolean</span> same = a == b ? <span class="keyword">true</span> : <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> same;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isSame</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"int"</span>);</span><br><span class="line">        <span class="keyword">return</span> a == b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isSame</span><span class="params">(<span class="keyword">long</span> a, <span class="keyword">long</span> b)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"long"</span>);</span><br><span class="line">        <span class="keyword">if</span>(a == b)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322184153923.png" alt="image-20200322184153923"></p>
+<p>重载的简易编程练习：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在调用输出语句的时候，println方法其实就是进行了多种数据类型的重载形式</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OverLoad_02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        myPrint(<span class="number">100</span>);</span><br><span class="line">        myPrint(<span class="string">"hello"</span>);</span><br><span class="line">        myPrint(<span class="number">2.63333333</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myPrint</span><span class="params">(<span class="keyword">byte</span> num)</span> </span>&#123;</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myPrint</span><span class="params">(<span class="keyword">short</span> num)</span> </span>&#123;</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myPrint</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myPrint</span><span class="params">(<span class="keyword">long</span> num)</span> </span>&#123;</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myPrint</span><span class="params">(<span class="keyword">float</span> num)</span> </span>&#123;</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myPrint</span><span class="params">(<span class="keyword">double</span> num)</span> </span>&#123;</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myPrint</span><span class="params">(<span class="keyword">char</span> zifu)</span> </span>&#123;</span><br><span class="line">        System.out.println(zifu);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myPrint</span><span class="params">(<span class="keyword">boolean</span> iss)</span> </span>&#123;</span><br><span class="line">        System.out.println(iss);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myPrint</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        System.out.println(str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322184226905.png" alt="image-20200322184226905"></p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章推荐</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\04\04\Java基础\Java基础--MySQL\" rel="bookmark">Java基础--MySQL</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\04\04\Java基础\Java基础--IO\" rel="bookmark">Java基础--IO</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\04\04\Java基础\Java基础--DBUtils\" rel="bookmark">Java基础--DBUtils</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\04\04\Java基础\Java基础--Java入门\" rel="bookmark">Java基础--Java入门</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\04\04\Java基础\Java基础--Thread\" rel="bookmark">Java基础--Thread</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" rel="tag"># Java基础入门</a>
+              <a href="/tags/Java%E8%AF%AD%E6%B3%95/" rel="tag"># Java语法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/04/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80--%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/" rel="prev" title="Java基础--二维数组">
+      <i class="fa fa-chevron-left"></i> Java基础--二维数组
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/04/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80--%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1-%E5%B0%81%E8%A3%85/" rel="next" title="Java基础--类与对象/封装">
+      Java基础--类与对象/封装 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#方法入门"><span class="nav-number">1.</span> <span class="nav-text">方法入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法定义"><span class="nav-number">1.1.</span> <span class="nav-text">方法定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注意事项："><span class="nav-number">1.1.0.1.</span> <span class="nav-text">注意事项：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法调用"><span class="nav-number">1.2.</span> <span class="nav-text">方法调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译器的两点优化"><span class="nav-number">1.3.</span> <span class="nav-text">编译器的两点优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注意事项"><span class="nav-number">2.0.0.0.1.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法的完整定义格式"><span class="nav-number">2.1.</span> <span class="nav-text">方法的完整定义格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法的三种调用格式"><span class="nav-number">2.2.</span> <span class="nav-text">方法的三种调用格式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注意事项：-1"><span class="nav-number">2.2.0.0.1.</span> <span class="nav-text">注意事项：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法的定义与调用综合练习"><span class="nav-number">2.3.</span> <span class="nav-text">方法的定义与调用综合练习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对比有参数无参数"><span class="nav-number">2.3.1.</span> <span class="nav-text">对比有参数无参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对比有返回值无返回值"><span class="nav-number">2.3.2.</span> <span class="nav-text">对比有返回值无返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注意事项：-2"><span class="nav-number">2.3.2.0.1.</span> <span class="nav-text">注意事项：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法编程练习"><span class="nav-number">2.3.3.</span> <span class="nav-text">方法编程练习</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#比较两个数是否相同"><span class="nav-number">2.3.3.0.1.</span> <span class="nav-text">比较两个数是否相同</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#求出1-100之间的所有的和"><span class="nav-number">2.3.3.0.2.</span> <span class="nav-text">求出1-100之间的所有的和</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#打印指定次数"><span class="nav-number">2.3.3.0.3.</span> <span class="nav-text">打印指定次数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法总结"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">方法总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法重载-OverLoad"><span class="nav-number">2.4.</span> <span class="nav-text">方法重载(OverLoad)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#重载相关练习题："><span class="nav-number">2.4.0.0.1.</span> <span class="nav-text">重载相关练习题：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="cgcs"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">cgcs</p>
+  <div class="site-description" itemprop="description">Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/alanchenggang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;alanchenggang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gangchengcn@gmail.com" title="E-Mail → mailto:gangchengcn@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7008648137/profile?topnav=1&wvr=6&is_all=1" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7008648137&#x2F;profile?topnav&#x3D;1&amp;wvr&#x3D;6&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.google.com/" title="Google → https:&#x2F;&#x2F;www.google.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i>Google</a>
+      </span>
+  </div>
+
+
+<!-- CloudCalendar -->
+<div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+	<div class="widget" id="CloudCalendar"></div>
+</div>
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cgcs</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">83k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:15</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+<!-- calendar widget -->
+
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/calendar.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/languages.min.js"></script>
+    <script>
+    $(function() {
+        $('#CloudCalendar').aCalendar('zh-CN',
+            $.extend(
+                '', {
+                    single:true,
+                    root:'/calendar/'
+                }
+            )
+        );
+    });
+    </script>
+
+
+  <div class="bg_content">
+  <canvas id="canvas"></canvas>
+</div>
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+<script type="text/javascript" src="/js/src/dynamic_bg.js"></script>

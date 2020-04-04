@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="java.util.Arrays是一个与数组相关的工具类,里面提供了大量静态方法,用来实现数组的常用操作. 常用操作: 12public static Sting toString(数组); &#x2F;&#x2F;将参数数组变成字符串(按照默认格式:[元素1,元素2,元素3...])public static void sort(数组);&#x2F;&#x2F;按照默认升序对数组的顺序进行排序  123456789101112">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础--多态&#x2F;接口">
+<meta property="og:url" content="http://yoursite.com/2020/04/04/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80--%E5%A4%9A%E6%80%81-%E6%8E%A5%E5%8F%A3/index.html">
+<meta property="og:site_name" content="cg&#39;s Blog">
+<meta property="og:description" content="java.util.Arrays是一个与数组相关的工具类,里面提供了大量静态方法,用来实现数组的常用操作. 常用操作: 12public static Sting toString(数组); &#x2F;&#x2F;将参数数组变成字符串(按照默认格式:[元素1,元素2,元素3...])public static void sort(数组);&#x2F;&#x2F;按照默认升序对数组的顺序进行排序  123456789101112">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200327171210938.png">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200327171247356.png">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200327172650032.png">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200327174205239.png">
+<meta property="article:published_time" content="2020-04-04T10:58:32.438Z">
+<meta property="article:modified_time" content="2020-04-04T11:47:10.527Z">
+<meta property="article:author" content="cgcs">
+<meta property="article:tag" content="Java基础入门">
+<meta property="article:tag" content="Java语法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200327171210938.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/04/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80--%E5%A4%9A%E6%80%81-%E6%8E%A5%E5%8F%A3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java基础--多态/接口 | cg's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://github.com/alanchenggang" target="_blank" rel="noopener"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">cg's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">cgcsblog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80--%E5%A4%9A%E6%80%81-%E6%8E%A5%E5%8F%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cgcs">
+      <meta itemprop="description" content="Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cg's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java基础--多态/接口
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-04 18:58:32 / 修改时间：19:47:10" itemprop="dateCreated datePublished" datetime="2020-04-04T18:58:32+08:00">2020-04-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <a id="more"></a>
+
+
+
+<p>java.util.Arrays是一个与数组相关的工具类,里面提供了大量静态方法,用来实现数组的常用操作.</p>
+<p>常用操作:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Sting <span class="title">toString</span><span class="params">(数组)</span></span>; <span class="comment">//将参数数组变成字符串(按照默认格式:[元素1,元素2,元素3...])</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(数组)</span></span>;<span class="comment">//按照默认升序对数组的顺序进行排序</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01ArraysBaic</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 将int[]数组按照默认格式变为字符串</span></span><br><span class="line">        <span class="keyword">int</span>[] intArray = &#123;<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>&#125;;</span><br><span class="line">        String intStr = Arrays.toString(intArray);</span><br><span class="line">        System.out.println(intStr);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="keyword">int</span>[] array1 =&#123;<span class="number">1</span>,<span class="number">6</span>,<span class="number">788</span>,<span class="number">25</span>,<span class="number">0</span>,<span class="number">36</span>&#125;;</span><br><span class="line">        Arrays.sort(array1);</span><br><span class="line">        System.out.println(Arrays.toString(array1));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        String[] array2=&#123;<span class="string">"bbb"</span>,<span class="string">"ccc"</span>,<span class="string">"aaa"</span>&#125;;</span><br><span class="line">        Arrays.sort(array2);</span><br><span class="line">        System.out.println(Arrays.toString(array2));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200327171210938.png" alt="image-20200327171210938"></p>
+<p>备注:</p>
+<ol>
+<li>如果是数值,那么sort默认按照升序;</li>
+<li>如果是字符串,那么sort按照字母升序;</li>
+<li>如果是自定义的类型,那么这个自定义的类需要Comparable或者Comparator借口的支持</li>
+</ol>
+<h3 id="Arrays-的练习-字符串倒序"><a href="#Arrays-的练习-字符串倒序" class="headerlink" title="Arrays 的练习:字符串倒序"></a>Arrays 的练习:字符串倒序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">题目要求:</span><br><span class="line">	请使用 Arrays 相关的API，将一个随机字符串中的所有字符升序排列，并倒序打印</span><br><span class="line">实现原理:</span><br><span class="line">	如何进行升序排列:sort</span><br><span class="line">	必须是一个数组,才能使用Arrays.sort方法   String--&gt;Array数组,用toCharArray</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraysDEC</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str1 = <span class="string">"sadadsfdfsd52sa"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">char</span>[] chars = str1.toCharArray();</span><br><span class="line">        Arrays.sort(chars);</span><br><span class="line">        <span class="comment">//需要倒序打印</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = chars.length-<span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            System.out.print(chars[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200327171247356.png" alt="image-20200327171247356"></p>
+<h3 id="数学工具类Math"><a href="#数学工具类Math" class="headerlink" title="数学工具类Math"></a>数学工具类Math</h3><p>java.util.Math类是数学相关的工具类,里面提供了大量的静态方法,完成与数学运算相关的操作.</p>
+<p>常用方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">abs</span><span class="params">(<span class="keyword">double</span> num)</span></span>; <span class="comment">//获取绝对值 有多种重载</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">ceil</span><span class="params">(<span class="keyword">double</span> num)</span></span>;<span class="comment">//向上取整</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">floor</span><span class="params">(<span class="keyword">double</span> num)</span></span>;<span class="comment">//向下取整</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">round</span><span class="params">(<span class="keyword">double</span> num)</span></span>;<span class="comment">//四舍五入</span></span><br></pre></td></tr></table></figure>
+
+<p>Math.PI代表近似的圆周率常量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo06MathBasic</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//获取绝对值</span></span><br><span class="line">        System.out.println(Math.abs(<span class="number">3.14</span>));</span><br><span class="line">        System.out.println(Math.abs(<span class="number">0</span>));</span><br><span class="line">        System.out.println(Math.abs(-<span class="number">44</span>));</span><br><span class="line">        System.out.println(<span class="string">"**************"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//向上取整</span></span><br><span class="line">        System.out.println(Math.ceil(<span class="number">3.9</span>));</span><br><span class="line">        System.out.println(Math.ceil(<span class="number">4.1</span>));</span><br><span class="line">        System.out.println(<span class="string">"**************"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//向下取整</span></span><br><span class="line">        System.out.println(Math.floor(<span class="number">5.1</span>));</span><br><span class="line">        System.out.println(Math.floor(<span class="number">5.9</span>));</span><br><span class="line">        System.out.println(<span class="string">"**************"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//四舍五入  不带小数点</span></span><br><span class="line">        System.out.println(Math.round(<span class="number">20.4</span>));</span><br><span class="line">        System.out.println(Math.round(<span class="number">20.5</span>));</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200327172650032.png" alt="image-20200327172650032"></p>
+<h4 id="Math类的练习"><a href="#Math类的练习" class="headerlink" title="Math类的练习"></a>Math类的练习</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">题目描述:</span><br><span class="line">	请使用 Math 相关的API，计算在 -10.8 到 5.9 之间，绝对值大于 6 或者小于 2.1 的整数有多少个&#x2F;&#x2F;9</span><br><span class="line">实现思想:</span><br><span class="line">	1. 已经确定了范围,就用for循环</span><br><span class="line">	2. 起点范围-10.8应该切换成为-10 两种方法:</span><br><span class="line">	 	2.1 可以使用Math.ceil方法,向上(向正方向)取整</span><br><span class="line">	 	2.2 强制类型转换</span><br><span class="line">	3. 每一个数字都是整数,所以步进表达式num++</span><br><span class="line">	4. 如何拿到绝对值? Math.abs方法</span><br><span class="line">	5. 一旦发现了一个数字,需要让计数器++进行统计</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MathLearn</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> min = -<span class="number">10.8</span>;</span><br><span class="line">        <span class="keyword">double</span> max = <span class="number">5.9</span>;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = (<span class="keyword">int</span>) min; i &lt; max; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> abs = Math.abs(i);</span><br><span class="line">            <span class="keyword">if</span> (abs &gt; <span class="number">6</span> || abs &lt; <span class="number">2.1</span>) &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"得到的结果是:"</span> + count);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200327174205239.png" alt="image-20200327174205239"></p>
+<p>备注:</p>
+<p>​    如果使用Math.ceil方法,name得到的是double类型的数值,但是double类型的数值也可以++</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章推荐</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\04\04\Java基础\Java基础--MySQL\" rel="bookmark">Java基础--MySQL</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\04\04\Java基础\Java基础--IO\" rel="bookmark">Java基础--IO</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\04\04\Java基础\Java基础--DBUtils\" rel="bookmark">Java基础--DBUtils</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\04\04\Java基础\Java基础--Java入门\" rel="bookmark">Java基础--Java入门</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\04\04\Java基础\Java基础--Thread\" rel="bookmark">Java基础--Thread</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" rel="tag"># Java基础入门</a>
+              <a href="/tags/Java%E8%AF%AD%E6%B3%95/" rel="tag"># Java语法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/04/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80--this-static-%E7%BB%A7%E6%89%BF/" rel="prev" title="Java基础--this/static/继承">
+      <i class="fa fa-chevron-left"></i> Java基础--this/static/继承
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/04/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80--%E5%BC%82%E5%B8%B8/" rel="next" title="Java基础--异常">
+      Java基础--异常 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-的练习-字符串倒序"><span class="nav-number">1.</span> <span class="nav-text">Arrays 的练习:字符串倒序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学工具类Math"><span class="nav-number">2.</span> <span class="nav-text">数学工具类Math</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Math类的练习"><span class="nav-number">2.1.</span> <span class="nav-text">Math类的练习</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="cgcs"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">cgcs</p>
+  <div class="site-description" itemprop="description">Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/alanchenggang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;alanchenggang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gangchengcn@gmail.com" title="E-Mail → mailto:gangchengcn@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7008648137/profile?topnav=1&wvr=6&is_all=1" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7008648137&#x2F;profile?topnav&#x3D;1&amp;wvr&#x3D;6&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.google.com/" title="Google → https:&#x2F;&#x2F;www.google.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i>Google</a>
+      </span>
+  </div>
+
+
+<!-- CloudCalendar -->
+<div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+	<div class="widget" id="CloudCalendar"></div>
+</div>
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cgcs</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">83k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:15</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+<!-- calendar widget -->
+
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/calendar.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/languages.min.js"></script>
+    <script>
+    $(function() {
+        $('#CloudCalendar').aCalendar('zh-CN',
+            $.extend(
+                '', {
+                    single:true,
+                    root:'/calendar/'
+                }
+            )
+        );
+    });
+    </script>
+
+
+  <div class="bg_content">
+  <canvas id="canvas"></canvas>
+</div>
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+<script type="text/javascript" src="/js/src/dynamic_bg.js"></script>

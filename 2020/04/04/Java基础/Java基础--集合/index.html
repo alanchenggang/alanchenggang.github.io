@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="ArrayList集合和数组的最大区别所在:    数组的长度不可以发生改变,但是ArrayList集合得长度是可以随意变化的. 对于ArrayList来说,有一个尖括号代表泛型. - 泛型:也就是装在集合当中的所有元素全都是统一的什么类型.注意: 泛型只能是引用类型,不能是基本类型.- 定义1ArrayList&lt;数据类型&gt; 集合名称 &#x3D; new ArrayList&lt;&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础--集合">
+<meta property="og:url" content="http://yoursite.com/2020/04/04/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80--%E9%9B%86%E5%90%88/index.html">
+<meta property="og:site_name" content="cg&#39;s Blog">
+<meta property="og:description" content="ArrayList集合和数组的最大区别所在:    数组的长度不可以发生改变,但是ArrayList集合得长度是可以随意变化的. 对于ArrayList来说,有一个尖括号代表泛型. - 泛型:也就是装在集合当中的所有元素全都是统一的什么类型.注意: 泛型只能是引用类型,不能是基本类型.- 定义1ArrayList&lt;数据类型&gt; 集合名称 &#x3D; new ArrayList&lt;&amp;g">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322191541720.png">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322191650178.png">
+<meta property="og:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322191753714.png">
+<meta property="article:published_time" content="2020-04-04T11:01:37.992Z">
+<meta property="article:modified_time" content="2020-04-04T11:47:48.505Z">
+<meta property="article:author" content="cgcs">
+<meta property="article:tag" content="Java基础入门">
+<meta property="article:tag" content="Java语法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322191541720.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/04/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80--%E9%9B%86%E5%90%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java基础--集合 | cg's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://github.com/alanchenggang" target="_blank" rel="noopener"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">cg's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">cgcsblog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80--%E9%9B%86%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cgcs">
+      <meta itemprop="description" content="Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cg's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java基础--集合
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-04 19:01:37 / 修改时间：19:47:48" itemprop="dateCreated datePublished" datetime="2020-04-04T19:01:37+08:00">2020-04-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <a id="more"></a>
+
+
+
+<p>ArrayList集合和数组的最大区别所在:<br>    数组的长度不可以发生改变,但是ArrayList集合得长度是可以随意变化的.</p>
+<p>对于ArrayList来说,有一个尖括号<E>代表泛型.</p>
+<pre><code>- 泛型:也就是装在集合当中的所有元素全都是统一的什么类型.</code></pre><p>注意:</p>
+<pre><code>泛型只能是引用类型,不能是基本类型.</code></pre><h3 id="定义"><a href="#定义" class="headerlink" title="- 定义"></a>- 定义</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;数据类型&gt; 集合名称 = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<p>简单编程练习:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo05ArrayList</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建了一个ArrayList集合List,里面装的全部是String类型的数据</span></span><br><span class="line">        <span class="comment">// 备注: 从Jdk1.7+开始,右侧尖括号内部可以不写内容,旦尖括号&lt;&gt;本身还是要写的</span></span><br><span class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="comment">//    String[] array = ...   数组的写法</span></span><br><span class="line">        System.out.println(list);<span class="comment">//[]</span></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        拓展:</span></span><br><span class="line"><span class="comment">            对于ArrayList集合来说,直接打印得到的不是地址值,而是内容</span></span><br><span class="line"><span class="comment">            如果内容是空,得到的是空的中括号[]</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="comment">// 向集合当中添加一些数据,需要用到add方法</span></span><br><span class="line">        list.add(<span class="string">"程港"</span>);</span><br><span class="line">        System.out.println(list);<span class="comment">//[程港]</span></span><br><span class="line"></span><br><span class="line">        list.add(<span class="string">"无内鬼"</span>);</span><br><span class="line">        list.add(<span class="string">"无内鬼1"</span>);</span><br><span class="line">        list.add(<span class="string">"无内鬼2"</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line"></span><br><span class="line"><span class="comment">//        list.add(100); error 数据类型不同导致错误</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="- 使用"></a>- 使用</h3><h4 id="ArrayList-常用方法"><a href="#ArrayList-常用方法" class="headerlink" title="- ArrayList 常用方法"></a>- ArrayList 常用方法</h4><ul>
+<li>向集合当中添加元素:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span></span>;<span class="comment">//参数的类型和泛型一致</span></span><br></pre></td></tr></table></figure>
+<p><strong>备注:</strong><br>    对于ArrayList集合来说,添加动作一定是成功的,所以可用可不用;但是对于其他集合来说(见后),add添加动作不一定成功.</p>
+<ul>
+<li>从集合当中获取元素:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span></span>;<span class="comment">//参数是索引编号(由0开始),返回值是对于位置的元素</span></span><br></pre></td></tr></table></figure></li>
+<li>从集合当中删除元素:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span></span>;<span class="comment">// 参数是索引编号,返回值就是被删除掉的元素</span></span><br></pre></td></tr></table></figure></li>
+<li>获取集合的尺寸长度:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>; 返回值是集合当中包含元素的个数</span><br></pre></td></tr></table></figure>
+简单编程练习:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">ArrayList 常用方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo06ArrayListMethod</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        System.out.println(list);<span class="comment">//[]</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//向集合当中添加元素:add</span></span><br><span class="line">        <span class="keyword">boolean</span> success = list.add(<span class="string">"张宝磊"</span>);</span><br><span class="line">        System.out.println(list);<span class="comment">//[张宝磊]</span></span><br><span class="line">        System.out.println(<span class="string">"添加动作是否成功: "</span> + success);<span class="comment">//添加动作是否成功: true</span></span><br><span class="line"></span><br><span class="line">        list.add(<span class="string">"程港"</span>);</span><br><span class="line">        list.add(<span class="string">"高圆圆"</span>);</span><br><span class="line">        list.add(<span class="string">"DNA"</span>);</span><br><span class="line">        System.out.println(list);<span class="comment">//[张宝磊, 程港, 高圆圆, DNA]</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//从集合中获取元素</span></span><br><span class="line">        String name = list.get(<span class="number">2</span>);</span><br><span class="line">        System.out.println(<span class="string">"第2号索引名字:"</span> + name);<span class="comment">//第2号索引名字:高圆圆</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//从集合中删除元素</span></span><br><span class="line">        String whoRemoved = list.remove(<span class="number">0</span>);</span><br><span class="line">        System.out.println(<span class="string">"被删除的人是:"</span> + whoRemoved);<span class="comment">//被删除的人是:张宝磊</span></span><br><span class="line">        System.out.println(list);<span class="comment">//[程港, 高圆圆, DNA]</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取集合的长度尺寸</span></span><br><span class="line">        <span class="keyword">int</span> size = list.size();</span><br><span class="line">        System.out.println(<span class="string">"当前集合的长度是:"</span>+size);<span class="comment">//当前集合的长度是:3</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322191541720.png" alt="image-20200322191541720"></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">遍历集合:</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo07ArrayLIstEach</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        list.add(<span class="string">"wuneihui"</span>);</span><br><span class="line">        list.add(<span class="string">"wuneihu15"</span>);</span><br><span class="line">        list.add(<span class="string">"wuneihui154"</span>);</span><br><span class="line">        list.add(<span class="string">"wuneihui45455"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//遍历集合</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">            System.out.println(list.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322191650178.png" alt="image-20200322191650178"></p>
+<h3 id="ArrayList存储基本类型的数据"><a href="#ArrayList存储基本类型的数据" class="headerlink" title="ArrayList存储基本类型的数据"></a>ArrayList存储基本类型的数据</h3><h4 id="背景介绍"><a href="#背景介绍" class="headerlink" title="- 背景介绍"></a>- 背景介绍</h4><p>由于ArrayList所支持的仅仅是引用类型,这就给想要添加数字等基本类型数据的功能实现带来麻烦</p>
+<h4 id="功能实现"><a href="#功能实现" class="headerlink" title="- 功能实现"></a>- 功能实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo08ArrayListBasic</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;String&gt; listA = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="comment">//错误写法!泛型只能是引用类型,不能是基本类型</span></span><br><span class="line"><span class="comment">//        ArrayList&lt;int&gt; listB =new ArrayList&lt;int&gt;();</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        如果希望向集合ArrayList当中存储基本类型数据,必须使用基本类型对应的"包装类"</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        基本类型      包装类(引用类型,包装类都位于java.lang包下)</span></span><br><span class="line"><span class="comment">        byte         Byte</span></span><br><span class="line"><span class="comment">        short        Short</span></span><br><span class="line"><span class="comment">        int          Integer   [特殊]</span></span><br><span class="line"><span class="comment">        long         Long</span></span><br><span class="line"><span class="comment">        float        Float</span></span><br><span class="line"><span class="comment">        double       Double</span></span><br><span class="line"><span class="comment">        char         Character   [特殊]</span></span><br><span class="line"><span class="comment">        boolean      Boolean</span></span><br><span class="line"><span class="comment">        从jdk1.5+ 开始,支持自动装箱,自动拆箱</span></span><br><span class="line"><span class="comment">        自动装箱:基本类型 --&gt; 包装类型</span></span><br><span class="line"><span class="comment">        自动拆箱:包装类型 --&gt; 基本类型</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        ArrayList&lt;Integer&gt; listC = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        listC.add(<span class="number">100</span>);</span><br><span class="line">        listC.add(<span class="number">200</span>);</span><br><span class="line">        System.out.println(listC);<span class="comment">//[100, 200]</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> num = listC.get(<span class="number">1</span>);</span><br><span class="line">        System.out.println(<span class="string">"第一号元素是:"</span> + num);<span class="comment">//第一号元素是:200</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="ArrayList练习"><a href="#ArrayList练习" class="headerlink" title="ArrayList练习"></a>ArrayList练习</h2><ul>
+<li><h3 id="存储随机数字"><a href="#存储随机数字" class="headerlink" title="存储随机数字"></a>存储随机数字</h3><p>题目:生成6个1-33之间的随机整数,添加到集合,并遍历集合</p>
+</li>
+</ul>
+<p>思路:</p>
+<ol>
+<li>需要存储6个数字,创建一个集合.<Integer></li>
+<li>产生随机数需要用到Random</li>
+<li>用循环6次来产生6个随机数字. for循环</li>
+<li>循环内调用r.nextInt(int n). 参数是33 0-32 整体+1即可</li>
+<li>将数字添加到集合中,add</li>
+<li>遍历集合</li>
+</ol>
+<p><strong>编程实现:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01ArrayListRandom</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Random r = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> num = r.nextInt(<span class="number">33</span>) + <span class="number">1</span>;</span><br><span class="line">            list.add(num);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//遍历集合</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">            System.out.println(list.get(i));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cscgblog-1301638685.cos.ap-chengdu.myqcloud.com/image-20200322191753714.png" alt="image-20200322191753714"></p>
+<h3 id="存储自定义的类"><a href="#存储自定义的类" class="headerlink" title="存储自定义的类"></a>存储自定义的类</h3><p>题目:自定义4个学生对象,添加到集合,并遍历.</p>
+<p>思路:</p>
+<ol>
+<li>自定义Student学生类,四个部分;</li>
+<li>创建一个集合,用来存储学生对象. 泛型:Student</li>
+<li>根据类,创建四个学生对象;</li>
+<li>将四个学生对象添加到集合中:add;</li>
+<li>遍历集合. for/size/get</li>
+</ol>
+<p>简单编程实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 程港</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo02ArrayListStudent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;Student&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Student one = <span class="keyword">new</span> Student(<span class="string">"程港"</span>, <span class="number">20</span>);</span><br><span class="line">        Student two = <span class="keyword">new</span> Student(<span class="string">"yuanyizhe"</span>, <span class="number">20</span>);</span><br><span class="line">        Student three = <span class="keyword">new</span> Student(<span class="string">"张宝磊"</span>, <span class="number">20</span>);</span><br><span class="line">        Student four = <span class="keyword">new</span> Student(<span class="string">"无内鬼"</span>, <span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">        list.add(one);</span><br><span class="line">        list.add(two);</span><br><span class="line">        list.add(three);</span><br><span class="line">        list.add(four);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//遍历集合</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">            Student stu = list.get(i);</span><br><span class="line">            System.out.println(<span class="string">"姓名:"</span>+stu.getName()+<span class="string">", 年龄:"</span>+stu.getAge());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">姓名:程港, 年龄:20</span></span><br><span class="line"><span class="comment">姓名:yuanyizhe, 年龄:20</span></span><br><span class="line"><span class="comment">姓名:张宝磊, 年龄:20</span></span><br><span class="line"><span class="comment">姓名:无内鬼, 年龄:20</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h3 id="按指定形式打印集合的方法"><a href="#按指定形式打印集合的方法" class="headerlink" title="- 按指定形式打印集合的方法"></a>- 按指定形式打印集合的方法</h3><p>题目: 定义以指定格式打印集合的方法(ArrayList类型作为参数)使用{}扩起集合,使用@分隔每个元素.<br>格式参照:{元素@元素@元素}</p>
+<p>编程练习:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 程港</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo03ArrayListPrint</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        list.add(<span class="string">"张三丰"</span>);</span><br><span class="line">        list.add(<span class="string">"张无忌"</span>);</span><br><span class="line">        list.add(<span class="string">"张翠山"</span>);</span><br><span class="line">        list.add(<span class="string">"张宝磊"</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">      [张三丰, 张无忌, 张翠山, 张宝磊]</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        printArrayList(list);</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        &#123;张三丰@张无忌@张翠山@张宝磊&#125;</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">    &#125;</span><br><span class="line">      <span class="comment">/*</span></span><br><span class="line"><span class="comment">        定义方法的三要素:</span></span><br><span class="line"><span class="comment">        返回值类型: 只是进行打印而已,没有运算,所以是void</span></span><br><span class="line"><span class="comment">        方法名称:PrintArrayList</span></span><br><span class="line"><span class="comment">        参数列表:ArrayList</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArrayList</span><span class="params">(ArrayList&lt;String&gt; list)</span></span>&#123;</span><br><span class="line">          <span class="comment">//&#123;10@20@30&#125;</span></span><br><span class="line">          System.out.print(<span class="string">"&#123;"</span>);</span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">              String name = list.get(i);</span><br><span class="line">              <span class="keyword">if</span> ( i == list.size()-<span class="number">1</span>)&#123;</span><br><span class="line">                  System.out.println(name +<span class="string">"&#125;"</span>);</span><br><span class="line">              &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                  System.out.print(name +<span class="string">"@"</span>);</span><br><span class="line">              &#125;</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="筛选集合"><a href="#筛选集合" class="headerlink" title="- 筛选集合"></a>- 筛选集合</h3><p>题目:用一个大集合存入20个随机数字,然后筛选其中的偶数元素,放到小集合当中. 要求使用自定义的方法来实现筛选</p>
+<p>分析:</p>
+<ol>
+<li>创建一个大集合,用来存储int数字<Integer>;</li>
+<li>随机数字就用Random nextInt;</li>
+<li>循环20次,把随机数字放入大集合; for循环/add方法</li>
+<li>定义一个方法用来进行筛选<ul>
+<li>筛选:根据大集合,筛选符合要求的元素,得到小集合</li>
+<li>三要素<ul>
+<li>返回值类型:ArrayList小集合</li>
+<li>方法名称:getSmallList</li>
+<li>参数列表: ArrayList大集合(装着20个随机数字);</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>判断(if)是偶数 num % 2 == 0?</li>
+<li>如果是偶数,则放到小集合中,否则不放;<br>编程练习:</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04ArrayLIstChoose</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; bigList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Random r = <span class="keyword">new</span> Random();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//生成随机数,范围1-100,并装入bigList</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> num = r.nextInt(<span class="number">100</span>)+<span class="number">1</span>;</span><br><span class="line">            bigList.add(num);</span><br><span class="line">        &#125;</span><br><span class="line">        ArrayList&lt;Integer&gt; smallList = getSmallList(bigList);</span><br><span class="line">        System.out.println(<span class="string">"偶数共有"</span>+smallList.size()+<span class="string">"个!"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; smallList.size(); i++) &#123;</span><br><span class="line">            System.out.println(smallList.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这个方法 接受大参数,返回小集合结果</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ArrayList&lt;Integer&gt; <span class="title">getSmallList</span><span class="params">(ArrayList&lt;Integer&gt; bigList)</span></span>&#123;</span><br><span class="line">        <span class="comment">//创建一个小集合</span></span><br><span class="line">        ArrayList&lt;Integer&gt; smallList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; bigList.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> num = bigList.get(i);</span><br><span class="line">            <span class="keyword">if</span> (num%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">                smallList.add(num);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> smallList;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">偶数共有6个!</span></span><br><span class="line"><span class="comment">16</span></span><br><span class="line"><span class="comment">60</span></span><br><span class="line"><span class="comment">18</span></span><br><span class="line"><span class="comment">92</span></span><br><span class="line"><span class="comment">44</span></span><br><span class="line"><span class="comment">10</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Process finished with exit code 0</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章推荐</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\04\04\Java基础\Java基础--MySQL\" rel="bookmark">Java基础--MySQL</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\04\04\Java基础\Java基础--IO\" rel="bookmark">Java基础--IO</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\04\04\Java基础\Java基础--DBUtils\" rel="bookmark">Java基础--DBUtils</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\04\04\Java基础\Java基础--Java入门\" rel="bookmark">Java基础--Java入门</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\04\04\Java基础\Java基础--Thread\" rel="bookmark">Java基础--Thread</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" rel="tag"># Java基础入门</a>
+              <a href="/tags/Java%E8%AF%AD%E6%B3%95/" rel="tag"># Java语法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/04/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80--IO/" rel="prev" title="Java基础--IO">
+      <i class="fa fa-chevron-left"></i> Java基础--IO
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/04/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80--MySQL/" rel="next" title="Java基础--MySQL">
+      Java基础--MySQL <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">- 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">- 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ArrayList-常用方法"><span class="nav-number">2.1.</span> <span class="nav-text">- ArrayList 常用方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList存储基本类型的数据"><span class="nav-number">3.</span> <span class="nav-text">ArrayList存储基本类型的数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景介绍"><span class="nav-number">3.1.</span> <span class="nav-text">- 背景介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#功能实现"><span class="nav-number">3.2.</span> <span class="nav-text">- 功能实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList练习"><span class="nav-number"></span> <span class="nav-text">ArrayList练习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存储随机数字"><span class="nav-number">1.</span> <span class="nav-text">存储随机数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储自定义的类"><span class="nav-number">2.</span> <span class="nav-text">存储自定义的类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按指定形式打印集合的方法"><span class="nav-number">3.</span> <span class="nav-text">- 按指定形式打印集合的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#筛选集合"><span class="nav-number">4.</span> <span class="nav-text">- 筛选集合</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="cgcs"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">cgcs</p>
+  <div class="site-description" itemprop="description">Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/alanchenggang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;alanchenggang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gangchengcn@gmail.com" title="E-Mail → mailto:gangchengcn@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7008648137/profile?topnav=1&wvr=6&is_all=1" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7008648137&#x2F;profile?topnav&#x3D;1&amp;wvr&#x3D;6&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.google.com/" title="Google → https:&#x2F;&#x2F;www.google.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i>Google</a>
+      </span>
+  </div>
+
+
+<!-- CloudCalendar -->
+<div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+	<div class="widget" id="CloudCalendar"></div>
+</div>
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cgcs</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">83k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:15</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+<!-- calendar widget -->
+
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/calendar.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-calendar/languages.min.js"></script>
+    <script>
+    $(function() {
+        $('#CloudCalendar').aCalendar('zh-CN',
+            $.extend(
+                '', {
+                    single:true,
+                    root:'/calendar/'
+                }
+            )
+        );
+    });
+    </script>
+
+
+  <div class="bg_content">
+  <canvas id="canvas"></canvas>
+</div>
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+<script type="text/javascript" src="/js/src/dynamic_bg.js"></script>
